@@ -101,4 +101,3 @@ public class StateTemplateImpl implements StateTemplateService {
         stateTemplateRepository.deleteById(id);
     }
 }
-

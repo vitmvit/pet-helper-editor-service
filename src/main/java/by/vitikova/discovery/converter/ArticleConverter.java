@@ -39,9 +39,9 @@ public interface ArticleConverter {
     /**
      * Обновление полей объекта Article на основе данных из ArticleUpdateDto.
      *
-     * @param record объект Article, который нужно обновить
-     * @param dto    объект ArticleUpdateDto с обновленными данными
+     * @param article объект Article, который нужно обновить
+     * @param dto     объект ArticleUpdateDto с обновленными данными
      * @return обновленный объект Article
      */
-    Article merge(@MappingTarget Article record, ArticleUpdateDto dto);
+    Article merge(@MappingTarget Article article, ArticleUpdateDto dto);
 }

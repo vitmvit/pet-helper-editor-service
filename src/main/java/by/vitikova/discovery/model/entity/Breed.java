@@ -1,23 +1,16 @@
 package by.vitikova.discovery.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.envers.Audited;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Audited
 @Entity
-@Table(uniqueConstraints =
-        {
-                @UniqueConstraint(columnNames = "name")
-        }
-)
+@Getter
+@Setter
 public class Breed {
 
     @Id
@@ -26,7 +19,7 @@ public class Breed {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(
             name = "type_id",
             referencedColumnName = "id",

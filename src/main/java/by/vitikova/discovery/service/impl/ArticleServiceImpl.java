@@ -69,6 +69,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     }
 
+    /**
+     * Метод для получения всех статей по их статусу.
+     *
+     * @param status Статус статьи.
+     * @return Список DTO статей с заданным статусом.
+     */
     @Override
     public List<ArticleDto> findAllByStatus(ArticleStatus status) {
         var articleList = articleRepository.findAllByStatus(status);

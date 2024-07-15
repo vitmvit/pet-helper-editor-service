@@ -33,17 +33,17 @@ public class VaccinationTypeController {
     }
 
     @PostMapping
-    public ResponseEntity<VaccinationTypeDto> create(@RequestBody VaccinationTypeCreateDto animalTypeCreateDto) {
+    public ResponseEntity<VaccinationTypeDto> create(@RequestBody VaccinationTypeCreateDto vaccinationTypeCreateDto) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(vaccinationTypeService.create(animalTypeCreateDto));
+                .body(vaccinationTypeService.create(vaccinationTypeCreateDto));
     }
 
     @PutMapping
-    public ResponseEntity<VaccinationTypeDto> update(@RequestBody VaccinationTypeUpdateDto animalTypeUpdateDto) {
+    public ResponseEntity<VaccinationTypeDto> update(@RequestBody VaccinationTypeUpdateDto vaccinationTypeUpdateDto) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(vaccinationTypeService.update(animalTypeUpdateDto));
+                .body(vaccinationTypeService.update(vaccinationTypeUpdateDto));
     }
 
     @DeleteMapping("/{id}")

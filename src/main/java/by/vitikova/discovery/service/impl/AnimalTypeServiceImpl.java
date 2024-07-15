@@ -41,12 +41,6 @@ public class AnimalTypeServiceImpl implements AnimalTypeService {
         return animalTypeConverter.convert(animalTypeRepository.findById(id).orElseThrow(EntityNotFoundException::new));
     }
 
-    @Override
-    public boolean existByName(String name) {
-        logger.info("AnimalTypeService: exist animal type with name: " + name);
-        return animalTypeRepository.existsByName(name);
-    }
-
     /**
      * Возвращает все записи.
      *

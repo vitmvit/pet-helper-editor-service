@@ -39,9 +39,9 @@ public interface AnimalTypeConverter {
     /**
      * Обновление полей объекта AnimalType на основе данных из AnimalTypeUpdateDto.
      *
-     * @param record объект AnimalType, который нужно обновить
-     * @param dto    объект AnimalTypeUpdateDto с обновленными данными
+     * @param animalType объект AnimalType, который нужно обновить
+     * @param dto        объект AnimalTypeUpdateDto с обновленными данными
      * @return обновленный объект AnimalType
      */
-    AnimalType merge(@MappingTarget AnimalType record, AnimalTypeUpdateDto dto);
+    AnimalType merge(@MappingTarget AnimalType animalType, AnimalTypeUpdateDto dto);
 }

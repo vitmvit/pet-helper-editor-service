@@ -4,9 +4,7 @@ import by.vitikova.discovery.BreedDto;
 import by.vitikova.discovery.create.BreedCreateDto;
 import by.vitikova.discovery.model.entity.Breed;
 import by.vitikova.discovery.update.BreedUpdateDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 
@@ -18,6 +16,11 @@ public interface BreedConverter {
      * @param source исходный объект Breed
      * @return преобразованный объект BreedDto
      */
+    @Mappings({
+            @Mapping(target = "id", source = "id"),
+            @Mapping(target = "name", source = "name"),
+            @Mapping(target = "typeId", source = "source.type.id")
+    })
     BreedDto convert(Breed source);
 
     /**
@@ -26,6 +29,11 @@ public interface BreedConverter {
      * @param source исходный объект BreedCreateDto для создания чата
      * @return преобразованный объект Breed
      */
+    @Mappings({
+            @Mapping(target = "id", source = "id"),
+            @Mapping(target = "name", source = "name"),
+            @Mapping(target = "type.id", source = "typeId")
+    })
     Breed convert(BreedCreateDto source);
 
     /**
@@ -39,9 +47,9 @@ public interface BreedConverter {
     /**
      * Обновление полей объекта Breed на основе данных из BreedUpdateDto.
      *
-     * @param record объект Breed, который нужно обновить
-     * @param dto    объект BreedUpdateDto с обновленными данными
+     * @param breed объект Breed, который нужно обновить
+     * @param dto   объект BreedUpdateDto с обновленными данными
      * @return обновленный объект Breed
      */
-    Breed merge(@MappingTarget Breed record, BreedUpdateDto dto);
+    Breed merge(@MappingTarget Breed breed, BreedUpdateDto dto);
 }

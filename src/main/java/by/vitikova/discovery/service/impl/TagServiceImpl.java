@@ -44,19 +44,18 @@ public class TagServiceImpl implements TagService {
         return tagConverter.convert(tagRepository.findById(id).orElseThrow(EntityNotFoundException::new));
     }
 
+    /**
+     * Метод для поиска всех тегов по идентификатору статьи.
+     *
+     * @param id Идентификатор статьи.
+     * @return Список DTO тегов, связанных со статьей с заданным идентификатором.
+     */
     @Override
     public List<TagDto> findByArticleId(Long id) {
         logger.info("TagService: find tags with article id: " + id);
         var tagList = tagRepository.findByArticle_Id(id);
         return tagList.stream().map(tagConverter::convert).collect(Collectors.toList());
 
-    }
-
-    @Override
-    public TagDto findByName(String name) {
-        logger.info("TagService: find tag with name: " + name);
-        var tag = tagRepository.findByName(name).orElse(null);
-        return tagConverter.convert(tag);
     }
 
     /**
@@ -87,16 +86,22 @@ public class TagServiceImpl implements TagService {
         return tagConverter.convert(tagRepository.save(tag));
     }
 
+    /**
+     * Метод для создания всех переданных DTO тегов.
+     *
+     * @param dtoList Список DTO тегов для создания.
+     * @return Список DTO созданных тегов.
+     */
+    @Transactional
     @Override
     public List<TagDto> createAll(List<TagCreateDto> dtoList) {
         var article = articleRepository.findById(dtoList.get(0).getArticleId()).orElseThrow(EntityNotFoundException::new);
         List<TagDto> tagDtoList = new ArrayList<>();
         for (TagCreateDto item : dtoList) {
-            var a = tagConverter.convert(item);
-            a.setArticle(article);
-            var b = tagRepository.save(a);
-            var c = tagConverter.convert(b);
-            tagDtoList.add(c);
+            var tag = tagConverter.convert(item);
+            tag.setArticle(article);
+            var tagDto = tagConverter.convert(tagRepository.save(tag));
+            tagDtoList.add(tagDto);
         }
         return tagDtoList;
     }
@@ -118,6 +123,13 @@ public class TagServiceImpl implements TagService {
         return tagConverter.convert(tagRepository.save(tag));
     }
 
+    /**
+     * Метод для удаления всех тегов, связанных со статьей с заданным идентификатором.
+     *
+     * @param id Идентификатор статьи.
+     */
+    @Transactional
+    @Override
     public void deleteByArticleId(Long id) {
         var list = tagRepository.findByArticle_Id(id);
         for (Tag item : list) {

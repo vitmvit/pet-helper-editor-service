@@ -16,7 +16,7 @@ public interface StateTemplateConverter {
      * Преобразование объекта StateTemplateDto в объект StateDto.
      *
      * @param source исходный объект StateTemplateDto
-     * @return преобразованный объект StateDto
+     * @return преобразованный объект StateTemplateDto
      */
     StateTemplateDto convert(StateTemplate source);
 
@@ -39,9 +39,9 @@ public interface StateTemplateConverter {
     /**
      * Обновление полей объекта StateTemplateDto на основе данных из StateTemplateUpdateDto.
      *
-     * @param record объект StateTemplateDto, который нужно обновить
-     * @param dto    объект StateTemplateUpdateDto с обновленными данными
+     * @param stateTemplate объект StateTemplateDto, который нужно обновить
+     * @param dto           объект StateTemplateUpdateDto с обновленными данными
      * @return обновленный объект StateTemplateDto
      */
-    StateTemplate merge(@MappingTarget StateTemplate record, StateTemplateUpdateDto dto);
+    StateTemplate merge(@MappingTarget StateTemplate stateTemplate, StateTemplateUpdateDto dto);
 }

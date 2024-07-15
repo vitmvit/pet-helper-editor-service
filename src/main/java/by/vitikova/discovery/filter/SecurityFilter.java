@@ -13,8 +13,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -29,7 +27,6 @@ import static by.vitikova.discovery.constant.Constant.INVALID_TOKEN_ERROR;
 @AllArgsConstructor
 public class SecurityFilter extends OncePerRequestFilter {
 
-    private static final Logger logger = LoggerFactory.getLogger(SecurityFilter.class);
     private AuthClient authClient;
     private UserService userService;
     private UserConverter userConverter;
@@ -48,7 +45,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
         try {
             // Проверяем, является ли запрос запросом на Swagger UI
-            if (request.getRequestURI().contains("/swagger-ui") || request.getRequestURI().contains("/api/doc") || request.getRequestURI().contains("/v3/api-docs") || request.getRequestURI().contains("articles") || request.getRequestURI().contains("tags")) {
+            if (request.getRequestURI().contains("/swagger-ui") || request.getRequestURI().contains("/api/doc") || request.getRequestURI().contains("/v3/api-docs")) {
                 // Если да, пропускаем фильтр и передаем запрос дальше
                 filterChain.doFilter(request, response);
                 return;

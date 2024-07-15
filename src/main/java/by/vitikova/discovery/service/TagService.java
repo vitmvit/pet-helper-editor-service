@@ -12,8 +12,6 @@ public interface TagService {
 
     List<TagDto> findByArticleId(Long id);
 
-    TagDto findByName(String name);
-
     List<TagDto> findAll();
 
     TagDto create(TagCreateDto dto);
