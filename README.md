@@ -15,6 +15,13 @@
 
 При каждом запросе необходимо передавать токен в заголовках.
 
+## Доступ
+
+Роли:
+
+- EDITOR
+- USER
+
 ## Swagger
 
 http://localhost:8087/api/doc/swagger-ui/index.html#/
